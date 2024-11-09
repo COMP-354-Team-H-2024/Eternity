@@ -1,0 +1,41 @@
+# converts radians to degrees
+FUNCTION rad_to_degree(radians)
+    RETURN radius * (180 / pi)
+
+
+# arccos function
+FUNCTION arccos(x, terms)
+
+    IF x < -1 OR x > 1 THEN
+        RAISE "Input must be between -1 and 1 for arccos"
+
+    IF x == 0 THEN
+        RETURN 0
+
+    IF x == -1 THEN
+        RETURN PI
+
+
+    # Taylor Series
+    # first term
+    result = PI/2 - x
+
+    # Start with x^1
+    x_pow = x
+
+    sign = -1
+
+    FOR n FROM 1 TO terms
+        # incremennt to the next power
+        x_pow *= x * x
+
+        # coefficient
+        coef = (2*n - 1) / (2*n * (2*n + 1)
+        result += sign * coef * x_pow
+
+        # alternate signs
+        sign *= -1
+
+    RETURN result
+
+

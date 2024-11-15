@@ -39,3 +39,4 @@ if __name__ == '__main__':
     print(rad_to_deg(rad))
     print(deg_to_rad(rad_to_deg(rad)))
 
+# EOF

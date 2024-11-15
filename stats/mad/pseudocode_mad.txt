@@ -1,0 +1,27 @@
+Function MAD(data):
+    # Step 1: Check if the data is empty
+    If data is empty:
+        Raise an error "Data cannot be empty"
+
+    # Step 2: 
+    sorted_data = Sort the list in increasing order (more-indepth?)
+    n = lenght of sorted_data
+
+    # Step 3: Calculate the median of the data
+    If len of dataset is odd: 
+    	median = sorted_data[n//2]
+    else: 
+    	median = (sorted_data[n//2-1] + sorted_data[n//2])/2
+    	
+    
+    # Step 4: Calculate the absolute deviations from the median
+    absolute_deviations = []
+    For each value in data:
+        deviation = absolute(value - median)    # Calculate the absolute deviation from the median
+        Add deviation to absolute_deviations
+    
+    # Step 5: Calculate the mean of the absolute deviations
+    mad_value = sum(absolute_deviations) / length(absolute_deviations)
+
+    # Step 6: Return the MAD value
+    Return mad_value

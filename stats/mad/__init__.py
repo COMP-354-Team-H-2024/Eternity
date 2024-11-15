@@ -1,3 +1,4 @@
+# Mean Absolute Deviation 
 
 def mad(data):
     """ 
@@ -14,13 +15,9 @@ def mad(data):
     Returns:
         int/float: Mean Average Deviation 
     """
-    if not (isinstance(data, int) or isinstance(data, int) or isinstance(data, list) or isinstance(data, tuple)): 
-        raise ValueError("Data supplied has to be a int, float, or iterable (tuple or list).")
-        
     # Invalid input
     if len(data) == 0:
         raise ValueError("Data cannot be empty.")
-
     # Median Calculation
     sorted_data = sorted(data)
     n = len(sorted_data)

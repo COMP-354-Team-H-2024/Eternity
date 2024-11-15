@@ -1,0 +1,21 @@
+FUNCTION log_base_b(x, b, tolerance):
+    IF x is less than or equal to 0 OR b is less than or equal to 1:
+        SHOW error message: "x must be greater than 0 and base b must be greater than 1"
+        STOP the program
+
+    SET the lower bound (low) to 0
+    SET the upper bound (high) to x
+    SET the guess to the middle point between low and high (guess = (low + high) / 2)
+
+    REPEAT the following steps until the difference between b^guess and x is smaller than tolerance:
+        IF b raised to the power of guess is less than x:
+            SET the lower bound (low) to guess
+        ELSE:
+            SET the upper bound (high) to guess
+        END IF
+
+        UPDATE the guess to the middle point between low and high
+
+    RETURN the guess as the result
+
+END FUNCTION

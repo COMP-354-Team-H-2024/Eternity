@@ -1,0 +1,25 @@
+FUNCTION power(x,y)
+    IF y = 0 THEN
+        RETURN 1
+    ELSE IF y > 0 THEN
+        RETURN x * power(x, y-1) // Positive exponent case
+    ELSE
+        RETURN 1 / power(x, -y) // Negative exponent
+END FUNCTION
+
+FUNCTION main()
+    TRY
+        INPUT "Enter the base (x): " AND STORE AS x FLOAT
+        INPUT "Enter the base (y): " AND STORE AS y FLOAT
+
+        CALL power(x,y) AND STORE RESULT IN result
+        PRINT x^y = result
+
+    CATCH ValueError AS e
+        PRINT "Error: " + e  // Handle invalid input errors
+    CATCH ZeroDivisionError
+        PRINT "Error: Division by zero encountered for x = 0 with a negative exponent."
+END FUNCTION
+
+IF __name__ == "__main__" THEN
+    CALL main()

@@ -1,5 +1,3 @@
-import math
-
 def Log_Base_b(x, b, tolerance=1e-10, max_iterations = 5000):
     if x <= 0 or b <= 1:
         raise ValueError("x must be greater than 0 and base b must be greater than 1")

@@ -1,11 +1,10 @@
 from tkinter import *
 import re
-# Import functions
-import power.power_function as power
-from power.power_function import calculate_power
-from abx.abx import calculate_abx
-from geo.arccos.arccos import arccos
 
+# Import functions
+import power.power_function as power_function
+import abx.abx as abx
+import geo.arccos.arccos as arccos
 
 def click(event):
     text = event.widget.cget("text")
@@ -14,7 +13,7 @@ def click(event):
     if text == "=":
         if "^" in current_text:
             base, exponent = current_text.split("^")
-            result = power.calculate_power(base, exponent)
+            result = power_function.calculate_power(base, exponent)
             screen.set(result)
 
         elif "ab^x" in current_text:
@@ -23,7 +22,7 @@ def click(event):
                 a = float(match.group(1))
                 b = float(match.group(2))
                 x = float(match.group(3))
-                result = calculate_abx(a, b, x)
+                result = abx.calculate_abx(a, b, x)
                 screen.set(result)
             else:
                 screen.set("Error: Invalid ab^x format")
@@ -33,7 +32,7 @@ def click(event):
             if match:
                 x = float(match.group(1))
                 try:
-                    result = arccos(x)
+                    result = arccos.arccos(x)
                     screen.set(result)
                 except ValueError:
                     screen.set("Error: Invalid input for arccos. Must be between -1 and 1.")

@@ -1,7 +1,7 @@
 from tkinter import *
 import re
 # Import functions
-import power.power_function
+import power.power_function as power
 from power.power_function import calculate_power
 from abx.abx import calculate_abx
 from geo.arccos.arccos import arccos
@@ -14,7 +14,7 @@ def click(event):
     if text == "=":
         if "^" in current_text:
             base, exponent = current_text.split("^")
-            result = calculate_power(base, exponent)
+            result = power.calculate_power(base, exponent)
             screen.set(result)
 
         elif "ab^x" in current_text:

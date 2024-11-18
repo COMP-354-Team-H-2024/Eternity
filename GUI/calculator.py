@@ -1,10 +1,11 @@
 from tkinter import *
 import re
-import tkinter as tk
 # Import functions
-from power_function import calculate_power
+import power.power_function
+from power.power_function import calculate_power
 from abx.abx import calculate_abx
 from geo.arccos.arccos import arccos
+
 
 def click(event):
     text = event.widget.cget("text")

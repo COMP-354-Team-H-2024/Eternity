@@ -25,7 +25,6 @@ def test_negative_base_odd_exponent():
 
 def test_negative_base_negative_exponent():
     assert pytest.approx(power(-2, -3), 0.000001) == -0.125   # Negative base, negative exponent
-`
 
 def test_negative_base_positive_exponent():
     assert power(-2, 5) == -32 # Negative base, positive exponent

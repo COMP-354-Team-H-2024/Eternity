@@ -17,7 +17,7 @@ def abx():
         print("Not in form of a*b^x")
 
 
-abx()
+# abx()
 
 
 def calculate_abx(a, b, x):
@@ -34,6 +34,7 @@ def main():
     x = float(input("Enter the value for x: "))
 
     result = calculate_abx(a, b, x)
+    print(f"Calculation: {calculate_abx(2,2,3)}")
     print(f"Result: {result}")
 
 

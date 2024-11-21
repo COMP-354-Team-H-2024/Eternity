@@ -4,7 +4,7 @@ def mad(data):
     Calculates the Mean Absolute Deviation (MAD) from a sample. MAD is the mean absolute deviation from the 
     sample median.
 
-    Naive Implememntation 
+    Naive Implementation
 
     Developer Notes: QuickSort implementation possible
 

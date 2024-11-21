@@ -11,27 +11,22 @@ def click(event):
     current_text = screen.get()
 
     if text == "=":
+
+        # Handle power function using "^"
         if "^" in current_text:
-            base, exponent = current_text.split("^")
-            result = power_function.calculate_power(base, exponent)
-            screen.set(result)
-
-        elif "ab^x" in current_text:
-            match = re.match(r"([\d.]+)\s*\*\s*([\d.]+)\s*\^\s*([\d.-]+)", current_text)
-            if match:
-                a = float(match.group(1))
-                b = float(match.group(2))
-                x = float(match.group(3))
-                result = abx.calculate_abx(a, b, x)
+            try:
+                base, exponent = current_text.split("^")
+                result = power_function.calculate_power(base, exponent)
                 screen.set(result)
-            else:
-                screen.set("Error: Invalid ab^x format")
+            except ValueError:
+                screen.set("Error: Invalid input for power function.")
 
+        # Handle arccos function
         elif "arccos(" in current_text:
             match = re.match(r"arccos\(([-+]?\d*\.\d+|\d+)\)", current_text)
             if match:
-                x = float(match.group(1))
                 try:
+                    x = float(match.group(1))
                     result = arccos.arccos(x)
                     screen.set(result)
                 except ValueError:
@@ -39,6 +34,19 @@ def click(event):
             else:
                 screen.set("Error: Invalid arccos format")
 
+        elif "ab^x(" in current_text:
+            match = re.match(r"ab\^x\(\s*([\d.]+),\s*([\d.]+),\s*([\d.]+)\s*\)", current_text)
+            if match:
+                try:
+                    a = float(match.group(1))
+                    b = float(match.group(2))
+                    x = float(match.group(3))
+                    result = abx.calculate_abx(a, b, x)
+                    screen.set(result)
+                except ValueError:
+                    screen.set("Error: Invalid parameters for ab^x.")
+            else:
+                screen.set("Error: Invalid ab^x format.")
         else:
             try:
                 result = str(eval(current_text))
@@ -48,37 +56,25 @@ def click(event):
     elif text == "CLEAR":
         screen.set("") # Clear the screen
     elif text == "DEL":
-        screen.set(current_text[:1]) # Delete the last character
+        screen.set(current_text[:-1]) # Delete the last character
     elif text == "x^y":
         if current_text and current_text[-1].isdigit():
             screen.set(current_text + "^")
-    elif text == "ab^x":
-        if current_text and current_text[-1].isdigit():
-            screen.set(current_text + "^")
+    elif "a(b^x)" in current_text:
+        screen.set("a(b^x)( , , )")
     elif text == "logb(x)":
-        if current_text and current_text[-1].isdigit():
-            screen.set(current_text + "log")
+        screen.set(current_text + "log(")
     elif text == "arccos(x)":
-        screen.set("arccos(")
-        if current_text and current_text[-1].isdigit():
-            screen.set(current_text + "arccos")
+        screen.set(current_text + "arccos(")
     elif text == "MAD":
-        if current_text and current_text[-1].isdigit():
-            screen.set(current_text + "^")
+        screen.set("MAD")
     elif text == "cos(x)":
-        screen.set("cos(")
-        if current_text and current_text[-1].isdigit():
-            screen.set(current_text + "cos")
+        screen.set(current_text + "cos(")
     elif text == "sin(x)":
-        screen.set("sin(")
-        if current_text and current_text[-1].isdigit():
-            screen.set(current_text + "sin")
+        screen.set(current_text + "sin(")
     else:
         # current_text = screen.get()
-        if current_text.startswith("Enter a*b^x:"):
-            screen.set(current_text + text)
-        else:
-            screen.set(current_text + text)
+        screen.set(current_text + text)
 
 
 root = Tk()
@@ -101,12 +97,12 @@ frame_buttons = Frame(root)
 frame_buttons.pack()
 
 buttons = [
-    'x^y', 'ab^x', 'logb(x)', 'arccos(x)','MAD',
-    'σ', 'sin(x)', 'cos(x)', '(', ')',
+    'x^y', 'a(b^x)', 'log_b(x)', 'arccos(x)','MAD',
+    'σ', 'e', 'π', '(', ')',
     '7', '8', '9', 'DEL', 'CLEAR',
     '4', '5', '6', '+', '*',
     '1', '2', '3', '-','/',
-    '0', '.', '%', '=','op'
+    '0', '.', '%', ',','='
 ]
 
 row = 0

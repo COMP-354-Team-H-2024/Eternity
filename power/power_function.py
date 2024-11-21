@@ -1,10 +1,11 @@
-def power(x,y):
-    if y== 0:
+def power(x, y):
+    if y == 0:
         return 1
     elif y > 0:
-        return x * power(x, y-1)
+        return x * power(x, y - 1)
     else:
         return 1 / power(x, -y)
+
 
 def calculate_power(base, exponent):
     try:
@@ -16,6 +17,22 @@ def calculate_power(base, exponent):
         return "Error"
     except ZeroDivisionError:
         return "Error: Division by zero"
+
+
+# @app.route('/calculate_power', methods=['POST'])
+""" def calculate_power_api():
+    try:
+        data = request.json
+        x = float(data['x'])
+        y = float(data['y'])
+        result = power(x, y)
+        return jsonify(success=True, result=result)
+    except Exception as e:
+        return jsonify(success=False, error=str(e))
+
+if __name__ == '__main__':
+    app.run(debug=True) """
+
 
 def main():
     try:

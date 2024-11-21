@@ -5,20 +5,20 @@ body {
      align-items: center;
      height: 100vh;
      margin: 0;
-     background-color: #f0f0f0;
+     background-color:#DDDDDD;
 }
 .calculator {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px #565656;
     max-width: 460px;
     width: 100%;
 }
 .display {
      width: 440px;
      height: 50px;
-     font-size: 1.2em;
+     font-size: 1em;
      text-align: left;
      padding: 5px;
      margin-right: 5px;
@@ -36,6 +36,8 @@ body {
 .radio-group label {
      font-size: 0.9em;
      margin-right: 10px;
+     color: #225f16;
+     font-weight: 600;
 }
 .buttons {
      display: grid;
@@ -47,15 +49,15 @@ body {
     margin-left: 2px;
      height: 50px;
      width: 80px;
-     padding: 15px;
-     font-size: 0.9em;
+     padding: 5px;
+     font-size: 1em;
      text-align: center;
-     background: #FF7878;
+     background: #349322;
      color: #fff;
      border: none;
      border-radius: 6px;
      cursor: pointer;
 }
 .button:hover {
-     background: #B74444;
+     background: #225f16;
 }

@@ -268,14 +268,20 @@ document.querySelectorAll('.button').forEach(button => {
             let expression = display.value
                 .replace(/π/g, Math.PI)
                 .replace(/e/g, Math.E);
+
             expression = expression
                 .replace(/(\d)(\()/g, '$1*(') // Example: 5(5) -> 5*(5)
                 .replace(/(\))(\()/g, ')*(')
                 .replace(/(\))(\d)/g, ')*$2') // Example: (5)5 -> (5)*5
                 .replace(/(\d)(π|e)/g, '$1*$2') // Example: 5π -> 5*Math.PI
-                .replace(/(π|e)(\d)/g, '$1*$2');
+                .replace(/(π|e)(\d)/g, '$1*$2') // Example: π5 -> Math.PI*5
+                .replace(/(π|e)(\()/g, '$1*(') // Handle π( -> Math.PI*(
+                .replace(/(\))(\d)/g, ')*$2'); // Handle closing parenthesis followed by number, e.g., (5)9 -> (5)*9
+
+            expression = expression.replace(/\b0+(\d+)/g, '$1');
 
             try{
+                // Evaluate the expression
                 const result = eval(expression);
                 display.value = result;
             }

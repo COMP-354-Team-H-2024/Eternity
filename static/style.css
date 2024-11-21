@@ -5,10 +5,10 @@ body {
      align-items: center;
      height: 100vh;
      margin: 0;
-     background-color:#DDDDDD;
+     background-color:#d0cdcd;
 }
 .calculator {
-    background: #fff;
+    background: #ffbbbb;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 10px #565656;
@@ -36,9 +36,10 @@ body {
 .radio-group label {
      font-size: 0.9em;
      margin-right: 10px;
-     color: #225f16;
+     color: #2d981c;
      font-weight: 600;
 }
+
 .buttons {
      display: grid;
      grid-template-columns: repeat(5,1fr);

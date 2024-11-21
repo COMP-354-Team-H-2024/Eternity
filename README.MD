@@ -35,18 +35,9 @@ You can install Flask using pip if you do not have it:
 
 
 2. Project Structure: 
-calculator_project/
-│
-├── app.py                    # Main Flask application file
-├── templates/
-│   └── index.html            # HTML file for the user interface
-│
-├── static/
-│   ├── style.css             # CSS for styling the interface
-│   └── script.js             # JavaScript for handling calculator logic
-│
-├── abx/                # Folder for function scripts (e.g., power_function.py, arccos_function.py, etc.)
-│   ├── power_function.py     # Power-related function
-├── arccos_function.py    # arccos function, etc.
 
-└── 
+3. Issues / bugs:
+   - When computing each function that use a list of number 
+for example x^y of 3(4),23, there is an error as the program does not know to compute 3(4) 
+before sending the data to compute x^y
+   - 

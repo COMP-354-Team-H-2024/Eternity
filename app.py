@@ -3,13 +3,8 @@ from power.power_function import calculate_power  # Import your power logic
 from abx.abx import calculate_abx
 from logarithmic.logarithmic import calculate_logbx
 from stats.mad.mad import mad
-from stats.stddev.__init__ import (
-    mean,
-    sample_variance,
-    population_variance,
-    sample_standard_deviation,
-    population_standard_deviation
-)
+from stats.stddev.__init__ import population_standard_deviation
+
 from geo.arccos.arccos import arccos
 from geo.arccos.arccos import rad_to_deg
 from math import pi
@@ -91,9 +86,7 @@ def standard_deviation_api():
         if not isinstance(numbers, list) or not all(isinstance(i, (int, float)) for i in numbers):
             raise ValueError("Input must be a list of numbers.")
 
-        # Calculate the sample standard deviation or population standard deviation based on user choice
-        # For simplicity, I'll use sample standard deviation as an example:
-        result = sample_standard_deviation(numbers)  # Use the appropriate function for calculation
+        result = population_standard_deviation(numbers)  # Use the appropriate function for calculation
 
         return jsonify(success=True, result=result)  # Return result as JSON
 

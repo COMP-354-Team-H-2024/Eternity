@@ -236,7 +236,32 @@ document.querySelectorAll('.button').forEach(button => {
             }
         }
         else if(buttonText === 'σ'){
-            const input = display.value.trim();
+            // const input = display.value.trim();
+            let input = display.value.trim();
+            let numbers = input.split(',').map(num => parseFloat(num));
+
+            if(numbers.some(isNaN)){
+                display.value = 'Error: Invalid input';
+                return
+            }
+
+            // Send the numbers to the server for the standard deviation calculation
+            fetch('http://127.0.0.1:5000/calculate_std', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ numbers })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    display.value = data.result;  // Display the result
+                } else {
+                    display.value = 'Error';
+                }
+            })
+            .catch(() => {
+                display.value = 'Error: Network issue';
+            });
 
         }
         else if(buttonText === '='){
@@ -255,7 +280,7 @@ document.querySelectorAll('.button').forEach(button => {
                 display.value = result;
             }
             catch(error){
-                display.value = 'Error';
+                display.value = 'Syntax Error';
                 console.error('Evaluation error:', error);
             }
         }

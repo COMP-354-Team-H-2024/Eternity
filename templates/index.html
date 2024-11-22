@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETERNITY Calculator</title>
     <link rel="stylesheet" href="/static/style.css">
-</head>
+
+</head>	
 <body>
     <div class="calculator">
         <!-- Input/Output Display -->
@@ -16,10 +17,15 @@
             <label><input type="radio" name="radius" value="radian" checked> Radian</label>
             <label><input type="radio" name="radius" value="degree"> Degree</label>
         </div>
-
+        
         <!-- Buttons -->
         <div class="buttons">
             <!-- 30 Buttons -->
+            <button class="button">import csv</button>
+            <button class="button"> </button>
+            <button class="button">↑</button>
+            <button class="button">↓</button>
+            <button class="button">hist</button>
             <button class="button">x^y</button>
             <button class="button">a(b^x)</button>
             <button class="button">log_b(x)</button>
@@ -50,6 +56,10 @@
             <button class="button">%</button>
             <button class="button">,</button>
             <button class="button">=</button>
+
+
+	    <!-- Hidden file input -->
+	    <input type="file" id="file-input" style="display:none" accept=".csv">
         </div>
     </div>
    <script src="/static/script.js"></script>

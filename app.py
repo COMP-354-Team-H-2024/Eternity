@@ -11,7 +11,6 @@ from math import pi
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -67,7 +66,7 @@ def mad_api():
         data = request.json.get('data', [])
         if not data:
             return jsonify(success=False, error="No data provided.")
-
+      
         # Calculate MAD
         result = mad(data)
         return jsonify(success=True, result=result)

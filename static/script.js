@@ -1,3 +1,5 @@
+historyView = ['No More Values in History'];
+historyIndex = 1;
 // Display button value on click
 document.querySelectorAll('.button').forEach(button => {
     button.addEventListener('click', () => {
@@ -9,6 +11,46 @@ document.querySelectorAll('.button').forEach(button => {
         if (buttonText === 'C') {
             display.value = ''; // Clear the display
         }
+        else if (buttonText === 'hist') {
+            display.value = historyView;   
+        }
+        else if (buttonText === '↑') {
+            display.value = historyView[historyView.length - 1 - historyIndex];
+            historyIndex = historyIndex + 1;
+             
+        }
+        else if (buttonText === '↓') {
+            display.value = historyView[historyView.length - 1 - historyIndex];
+            historyIndex = historyIndex - 1; 
+        }
+        else if (buttonText === 'import csv') {
+                    // Trigger the file input click event to open the file dialog
+                    const fileInput = document.getElementById('file-input');
+                    fileInput.click();
+        
+                    // Add event listener for when the file is selected
+                    fileInput.addEventListener('change', (event) => {
+                        const file = event.target.files[0];
+                        if (file && file.name.endsWith('.csv')) {
+                            display.value = 'Importing data...'; // Indicate importing process
+                            const reader = new FileReader();
+        
+                            reader.onload = function(e) {
+                            const content = e.target.result;
+                            // Output the CSV content into the display
+                            display.value = content; // Display CSV data directly in the input field
+                        };
+        
+                            reader.onerror = function() {
+                                display.value = 'Error importing file.';
+                            };
+                            reader.readAsText(file); // Read the file content
+                            
+                        } else {
+                            display.value = 'Invalid file. Please select a CSV file.';
+                        }
+                    });
+                }
         // If the button is "DEL", remove the last character from the display
         else if (buttonText === 'DEL') {
             display.value = display.value.slice(0, -1); // Remove last character
@@ -55,6 +97,7 @@ document.querySelectorAll('.button').forEach(button => {
                     .then(data => {
                         if (data.success) {
                             display.value = `${data.result} ${unit}`;
+                            historyView.push(data.result);
                         } else {
                             display.value = `Error: ${data.error}`;
                         }
@@ -128,6 +171,7 @@ document.querySelectorAll('.button').forEach(button => {
                 .then(data => {
                     if (data.success) {
                         display.value = data.result; // Show the result
+                        historyView.push(data.result);
                     } else {
                         display.value = 'Error'; // Handle errors
                     }
@@ -160,6 +204,7 @@ document.querySelectorAll('.button').forEach(button => {
                     .then(data => {
                         if (data.success) {
                             display.value = data.result; // Show the result
+                            historyView.push(data.result);
                         } else {
                             display.value = 'Error'; // Handle errors
                         }
@@ -193,9 +238,10 @@ document.querySelectorAll('.button').forEach(button => {
                     .then(data => {
                         if (data.success) {
                             display.value = data.result; // Show the result
+                            historyView.push(data.result);
                         } else {
                             display.value = 'Error'; // Handle errors
-                        }
+                        } 
                     })
                     .catch(() => {
                         display.value = 'Error: Network issue'; // Handle network errors
@@ -205,7 +251,6 @@ document.querySelectorAll('.button').forEach(button => {
                 display.value = 'Error: Invalid format (use b,x)';
             }
         }
-
         else if(buttonText == 'MAD'){
             const input = display.value.trim();
             const match = input.match(/^([\d.]+(?:, *[\d.]+)*)$/);
@@ -223,6 +268,7 @@ document.querySelectorAll('.button').forEach(button => {
                     .then(data => {
                          if (data.success) {
                              display.value = data.result; // Show the result
+                             historyView.push(data.result);
                          } else {
                              display.value = 'Error: ' + data.error; // Show error message
                          }
@@ -265,6 +311,7 @@ document.querySelectorAll('.button').forEach(button => {
 
         }
         else if(buttonText === '='){
+                        
             let expression = display.value
                 .replace(/π/g, Math.PI)
                 .replace(/e/g, Math.E);
@@ -283,7 +330,9 @@ document.querySelectorAll('.button').forEach(button => {
             try{
                 // Evaluate the expression
                 const result = eval(expression);
+                historyView.push(result);
                 display.value = result;
+                
             }
             catch(error){
                 display.value = 'Syntax Error';

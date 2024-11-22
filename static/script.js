@@ -1,5 +1,5 @@
 historyView = ['No More Values in History'];
-historyIndex = 1;
+historyIndex = 0;
 // Display button value on click
 document.querySelectorAll('.button').forEach(button => {
     button.addEventListener('click', () => {

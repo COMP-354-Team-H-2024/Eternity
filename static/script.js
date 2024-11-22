@@ -1,5 +1,40 @@
 historyView = ['No More Values in History'];
 historyIndex = 0;
+//simulate the enter '=' with enter from usued input 
+document.addEventListener('keydown', function(event) {
+    const display = document.getElementById('display');
+    
+    // Check if the pressed key is the Enter key
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevent the default behavior (form submission, etc.)
+
+        // Get the current value in the display
+        let expression = display.value
+            .replace(/π/g, Math.PI)
+            .replace(/e/g, Math.E);
+
+        expression = expression
+            .replace(/(\d)(\()/g, '$1*(') // Example: 5(5) -> 5*(5)
+            .replace(/(\))(\()/g, ')*(')
+            .replace(/(\))(\d)/g, ')*$2') // Example: (5)5 -> (5)*5
+            .replace(/(\d)(π|e)/g, '$1*$2') // Example: 5π -> 5*Math.PI
+            .replace(/(π|e)(\d)/g, '$1*$2') // Example: π5 -> Math.PI*5
+            .replace(/(π|e)(\()/g, '$1*(') // Handle π( -> Math.PI*(
+            .replace(/(\))(\d)/g, ')*$2'); // Handle closing parenthesis followed by number, e.g., (5)9 -> (5)*9
+
+        expression = expression.replace(/\b0+(\d+)/g, '$1');
+
+        try {
+            // Evaluate the expression
+            const result = eval(expression);
+            historyView.push(result);  // Add result to history if you want
+            display.value = result;    // Show result in display
+        } catch (error) {
+            display.value = 'Syntax Error'; // Show error if the expression is invalid
+            console.error('Evaluation error:', error);
+        }
+    }
+});
 // Display button value on click
 document.querySelectorAll('.button').forEach(button => {
     button.addEventListener('click', () => {

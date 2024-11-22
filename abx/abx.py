@@ -23,6 +23,10 @@ def abx():
 def calculate_abx(a, b, x):
     if b == 1:
         return "The growth/decay factor (b) must not equal 1"
+    elif a == 0:
+        return "The coefficent (a) must not equal 0"
+    elif x < 0:
+        return "The exponent (x) must not be negative"
     else:
         y = a * (b ** x)
         return y

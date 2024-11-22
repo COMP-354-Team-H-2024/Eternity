@@ -3,23 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETERNITY Calculator</title>
-    <link rel="stylesheet" href="/static/style.css">
-
-</head>	
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="/static/scientific.css">
+</head>
 <body>
-    <div class="calculator">
-        <!-- Input/Output Display -->
-        <input type="text" class="display" id="display" placeholder="e.g. 8+4, arccos(0.3)">
-
-        <!-- Radio Buttons -->
-        <div class="radio-group">
-            <label><input type="radio" name="radius" value="radian" checked> Radian</label>
-            <label><input type="radio" name="radius" value="degree"> Degree</label>
+    <div class="container">
+        <!-- Left Section: File Upload -->
+        <div class="file-upload">
+            <h2>File Upload</h2>
+            <input type="file" id="fileInput" accept=".csv" multiple>
+            <div id="fileDisplayArea" class="file-display-area">
+                <p>No files uploaded yet.</p>
+            </div>
         </div>
-        
-        <!-- Buttons -->
-        <div class="buttons">
+
+        <!-- Middle Section: Calculator -->
+        <div class="calculator">
+            <!-- <div class="display">
+                <input type="text" id="result" readonly>
+            </div> -->
+            <div class="formula-bar">
+                <label for="formulaInput">Formula:</label>
+                <input type="text" id="formulaInput" placeholder="Type your formula here...">
+                <button id="evaluateButton">Evaluate</button>
+            </div>
+            <div class="buttons">
             <!-- 35 Buttons -->
             <button class="button">import csv</button>
             <button class="button"> </button>
@@ -61,7 +69,23 @@
 	    <!-- Hidden file input -->
 	    <input type="file" id="file-input" style="display:none" accept=".csv">
         </div>
+        </div>
+
+        <!-- Right Section: History and Memory -->
+        <div class="history-memory">
+            <div class="history">
+                <h2>History</h2>
+                <ul id="historyList">
+                    <li>No history yet...</li>
+                </ul>
+            </div>
+            <div class="memory">
+                <h2>Memory</h2>
+                <ul id="memoryList">
+                    <li>No memory yet...</li>
+                </ul>
+            </div>
+        </div>
     </div>
-   <script src="/static/script.js"></script>
 </body>
 </html>

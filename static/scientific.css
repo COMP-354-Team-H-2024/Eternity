@@ -35,6 +35,38 @@ body {
     font-size: 1.5rem;
 }
 
+.file-display-area {
+    margin-top: 10px;
+    background: #444;
+    padding: 10px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    color: #ccc;
+}
+
+.file-display-area > div {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #555;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.file-display-area > div p {
+    margin: 0 0 5px;
+    font-size: 0.9rem;
+}
+
+.file-display-area > div pre {
+    margin: 0;
+    font-size: 0.8rem;
+    background: #666;
+    padding: 5px;
+    border-radius: 3px;
+    overflow-x: auto;
+}
+
 .file-upload input[type="file"] {
     display: block;
     margin: 0 auto;
@@ -85,6 +117,62 @@ body {
     border-radius: 5px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+/* Formula Bar Styling */
+.formula-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #333;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.formula-bar label {
+    margin-right: 10px;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+#formulaInput {
+    flex: 1;
+    padding: 10px;
+    font-size: 1.2rem;
+    background: #444;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#evaluateButton {
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    background: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#evaluateButton:hover {
+    background: #777;
+}
+
+#evaluateButton:active {
+    transform: scale(0.95);
+}
+
+/* Buttons Section (Optional) */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Adjust columns as needed */
+    gap: 10px;
+}
+
 
 .buttons {
     display: grid;

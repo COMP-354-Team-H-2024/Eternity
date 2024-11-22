@@ -11,55 +11,64 @@
         <!-- Left Section: File Upload -->
         <div class="file-upload">
             <h2>File Upload</h2>
-            <input type="file" id="fileInput" accept=".csv">
-            <div class="file-info">
-                <p>No file selected</p>
-                <div id="fileContent" class="file-content">File content will appear here...</div>
+            <input type="file" id="fileInput" accept=".csv" multiple>
+            <div id="fileDisplayArea" class="file-display-area">
+                <p>No files uploaded yet.</p>
             </div>
         </div>
 
         <!-- Middle Section: Calculator -->
         <div class="calculator">
-            <div class="display">
+            <!-- <div class="display">
                 <input type="text" id="result" readonly>
+            </div> -->
+            <div class="formula-bar">
+                <label for="formulaInput">Formula:</label>
+                <input type="text" id="formulaInput" placeholder="Type your formula here...">
+                <button id="evaluateButton">Evaluate</button>
             </div>
             <div class="buttons">
-                <!-- Row 1 -->
-                <button>CE</button>
-                <button>⌫</button>
-                <button>(</button>
-                <button>)</button>
-                <!-- Row 2 -->
-                <button>π</button>
-                <button>e</button>
-                <button>xʸ</button>
-                <button>√</button>
-                <!-- Row 3 -->
-                <button>sin</button>
-                <button>cos</button>
-                <button>tan</button>
-                <button>log</button>
-                <!-- Row 4 -->
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>÷</button>
-                <!-- Row 5 -->
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>×</button>
-                <!-- Row 6 -->
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>−</button>
-                <!-- Row 7 -->
-                <button>0</button>
-                <button>.</button>
-                <button>=</button>
-                <button>+</button>
-            </div>
+            <!-- 35 Buttons -->
+            <button class="button">import csv</button>
+            <button class="button"> </button>
+            <button class="button">↑</button>
+            <button class="button">↓</button>
+            <button class="button">hist</button>
+            <button class="button">x^y</button>
+            <button class="button">a(b^x)</button>
+            <button class="button">log_b(x)</button>
+            <button class="button">arccos(x)</button>
+            <button class="button">MAD</button>
+            <button class="button">σ</button>
+            <button class="button">e</button>
+            <button class="button">π</button>
+            <button class="button">(</button>
+            <button class="button">)</button>
+            <button class="button">7</button>
+            <button class="button">8</button>
+            <button class="button">9</button>
+            <button class="button">DEL</button>
+            <button class="button">C</button>
+            <button class="button">4</button>
+            <button class="button">5</button>
+            <button class="button">6</button>
+            <button class="button">+</button>
+            <button class="button">*</button>
+            <button class="button">1</button>
+            <button class="button">2</button>
+            <button class="button">3</button>
+            <button class="button">-</button>
+            <button class="button">/</button>
+            <button class="button">0</button>
+            <button class="button">.</button>
+            <button class="button">%</button>
+            <button class="button">,</button>
+            <button class="button">=</button>
+
+
+	    <!-- Hidden file input -->
+	    <input type="file" id="file-input" style="display:none" accept=".csv">
+        </div>
         </div>
 
         <!-- Right Section: History and Memory -->

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="/static/scientific.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section: File Upload -->
+        <div class="file-upload">
+            <h2>File Upload</h2>
+            <input type="file" id="fileInput" accept=".csv">
+            <div class="file-info">
+                <p>No file selected</p>
+                <div id="fileContent" class="file-content">File content will appear here...</div>
+            </div>
+        </div>
+
+        <!-- Middle Section: Calculator -->
+        <div class="calculator">
+            <div class="display">
+                <input type="text" id="result" readonly>
+            </div>
+            <div class="buttons">
+                <!-- Row 1 -->
+                <button>CE</button>
+                <button>⌫</button>
+                <button>(</button>
+                <button>)</button>
+                <!-- Row 2 -->
+                <button>π</button>
+                <button>e</button>
+                <button>xʸ</button>
+                <button>√</button>
+                <!-- Row 3 -->
+                <button>sin</button>
+                <button>cos</button>
+                <button>tan</button>
+                <button>log</button>
+                <!-- Row 4 -->
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>÷</button>
+                <!-- Row 5 -->
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>×</button>
+                <!-- Row 6 -->
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>−</button>
+                <!-- Row 7 -->
+                <button>0</button>
+                <button>.</button>
+                <button>=</button>
+                <button>+</button>
+            </div>
+        </div>
+
+        <!-- Right Section: History and Memory -->
+        <div class="history-memory">
+            <div class="history">
+                <h2>History</h2>
+                <ul id="historyList">
+                    <li>No history yet...</li>
+                </ul>
+            </div>
+            <div class="memory">
+                <h2>Memory</h2>
+                <ul id="memoryList">
+                    <li>No memory yet...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #1e1e1e, #3e3e3e);
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    background: #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Left Section: File Upload */
+.file-upload {
+    flex: 1;
+    padding: 20px;
+    border-right: 2px solid #444;
+    background: #333;
+}
+
+.file-upload h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.file-upload input[type="file"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.file-content {
+    margin-top: 10px;
+    padding: 10px;
+    background: #444;
+    color: #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    height: 150px;
+    overflow-y: auto;
+}
+
+/* Middle Section: Calculator */
+.calculator {
+    flex: 1.5;
+    padding: 20px;
+    background: #222;
+}
+
+.display {
+    margin-bottom: 15px;
+}
+
+.display input {
+    width: 100%;
+    height: 50px;
+    background: #444;
+    color: #fff;
+    border: none;
+    text-align: right;
+    padding: 10px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.buttons button {
+    padding: 15px;
+    font-size: 1rem;
+    background: #555;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.buttons button:hover {
+    background: #777;
+}
+
+.buttons button:active {
+    transform: scale(0.95);
+}
+
+/* Right Section: History and Memory */
+.history-memory {
+    flex: 1;
+    padding: 20px;
+    border-left: 2px solid #444;
+    background: #333;
+}
+
+.history, .memory {
+    margin-bottom: 20px;
+}
+
+.history h2, .memory h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.history ul, .memory ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: #444;
+    color: #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    height: 150px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.history ul li, .memory ul li {
+    margin-bottom: 5px;
+}

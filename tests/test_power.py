@@ -1,6 +1,6 @@
 import pytest
 
-from power_function import power  # Import the function from power_function.py
+from power.power_function import power  # Import the function from power_function.py
 
 
 def test_positive_exponent():

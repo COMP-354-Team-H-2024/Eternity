@@ -19,13 +19,16 @@
 
         <!-- Middle Section: Calculator -->
         <div class="calculator">
-            <!-- <div class="display">
-                <input type="text" id="result" readonly>
+             <!-- <div class="display" id="display" placeholder="e.g. 8+4, arccos(0.3)">
+                <input type="text" id="result" placeholder="e.g. 8+4, arccos(0.3)">
             </div> -->
+            <!-- Input/Output Display -->
+            <input type="text" class="display" id="display" placeholder="e.g. 8+4, arccos(0.3)">
+
             <div class="formula-bar">
                 <label for="formulaInput">Formula:</label>
                 <input type="text" id="formulaInput" placeholder="Type your formula here...">
-                <button id="evaluateButton">Evaluate</button>
+                <!-- <button id="evaluateButton">Evaluate</button> -->
             </div>
             <div class="buttons">
             <!-- 35 Buttons -->
@@ -87,5 +90,6 @@
             </div>
         </div>
     </div>
+    <script src="/static/script.js"></script>
 </body>
 </html>

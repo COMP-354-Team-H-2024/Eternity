@@ -1,6 +1,6 @@
-historyView = ['No More Values in History'];
-historyIndex = 0;
-//simulate the enter '=' with enter from usued input 
+let historyView = ['No More Values in History'];
+let historyIndex = 0;
+//simulate the enter '=' with enter from used input
 document.addEventListener('keydown', function(event) {
     const display = document.getElementById('display');
     
@@ -380,3 +380,5 @@ document.querySelectorAll('.button').forEach(button => {
 
     });
 });
+
+

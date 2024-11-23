@@ -30,24 +30,28 @@ def calculate_logbx(x, b, tolerance=1e-10, max_iterations=5000):
     return guess
 
 ##main program
-print("This program calculates log base 'b' of a number 'x'.\n")
-while True:
-    try:
+def main():
+    print("This program calculates log base 'b' of a number 'x'.\n")
+    while True:
+        try:
        
-        x = float(input("Enter the value of x (must be greater than 0): "))
-        b = float(input("Enter the base b (must be greater than 1): "))
+            x = float(input("Enter the value of x (must be greater than 0): "))
+            b = float(input("Enter the base b (must be greater than 1): "))
         
         
-        result = calculate_logbx(x, b)
-        print(f"\nlog base {b} of {x} is approximately: {result}")
+            result = calculate_logbx(x, b)
+            print(f"\nlog base {b} of {x} is approximately: {result}")
     
-    except ValueError as e:
-        print(f"Input Error: {e}")
-    except OverflowError as e:
-        print(f"Computation Error: {e}")
+        except ValueError as e:
+            print(f"Input Error: {e}")
+        except OverflowError as e:
+            print(f"Computation Error: {e}")
     
     
-    cont = input("\nDo you want to calculate another logarithm? (yes/no): ").strip().lower()
-    if cont != 'yes':
-        print("Logarithmic calculations ended!")
-        break
+        cont = input("\nDo you want to calculate another logarithm? (yes/no): ").strip().lower()
+        if cont != 'yes':
+            print("Logarithmic calculations ended!")
+            break
+
+if __name__ == "__main__":
+    main()

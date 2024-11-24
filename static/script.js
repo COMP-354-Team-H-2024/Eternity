@@ -90,13 +90,6 @@ document.querySelectorAll('.button').forEach(button => {
         else if (buttonText === 'DEL') {
             display.value = display.value.slice(0, -1); // Remove last character
         }
-        // Handle constants: e and pi
-        /* else if (buttonText === 'e'){
-            display.value += Math.E.toFixed(10);
-        }
-        else if(buttonText === 'π'){
-            display.value += Math.PI.toFixed(10);
-        } */
         // Append `e` and `π` to the display without evaluating them immediately
         else if (buttonText === 'e' || buttonText === 'π') {
             display.value += buttonText; // Just add `e` or `π` as-is
@@ -145,52 +138,25 @@ document.querySelectorAll('.button').forEach(button => {
                 display.value += buttonText;
             }
         }
-        // Handle x^y operation
-        /* else if (buttonText === 'x^y'){
-            const input = display.value.trim();
-            const match = input.match(/^([\d.]+),([\d.]+)$/);
 
-            if(match){
-                const x = parseFloat(match[1]);
-                const y = parseFloat(match[2]);
-
-                // Call the Python function via an API
-                fetch('http://127.0.0.1:5000/calculate_power', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ x, y })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            display.value = data.result; // Show the result
-                        } else {
-                            display.value = 'Error'; // Handle errors
-                        }
-                    })
-                    .catch(() => {
-                        display.value = 'Error: Network issue'; // Handle network errors
-                    });
-            }
-            else{
-                display.value = 'Error: Invalid format (use x,y)';
-            }
-        } */
         else if(buttonText === 'x^y'){
             let expression = display.value.trim()
 
             expression = expression
                 .replace(/π/g, Math.PI)
-                .replace(/e/g, Math.E);
-
-            expression = expression
+                .replace(/e/g, Math.E)
                 .replace(/(\d)(\()/g, '$1*(') // Example: 5(5) -> 5*(5)
                 .replace(/(\))(\()/g, ')*(')
                 .replace(/(\))(\d)/g, ')*$2') // Example: (5)5 -> (5)*5
                 .replace(/(\d)(π|e)/g, '$1*$2') // Example: 5π -> 5*Math.PI
-                .replace(/(π|e)(\d)/g, '$1*$2');
+                .replace(/(π|e)(\d)/g, '$1*$2') // Example: π5 -> Math.PI*5
+                .replace(/(π|e)(\()/g, '$1*(') // Example: π( -> Math.PI*(
+                .replace(/(\))(\d)/g, ')*$2')  // Example: (5)9 -> (5)*9
+                .replace(/(\d)-(\d)/g, '$1-($2)') // Treat 5-5 as 5-(5) for clarity
+                .replace(/--/g, '+') // Simplify double negatives: -- -> +
+                .replace(/(\+|\-|\*|\/)\-/g, '$1(-'); // Handle cases like 5*-3 -> 5*(-3)
 
-            const match = expression.match(/^([\d.]+),([\d.]+)$/);
+            const match = expression.match(/^(-?[\d.]+),(-?[\d.]+)$/);
 
             if(match){
                 const x = parseFloat(match[1]);
@@ -222,7 +188,7 @@ document.querySelectorAll('.button').forEach(button => {
         // Handle a(b^x) function
         else if (buttonText === 'a(b^x)'){
             const input = display.value.trim();
-            const match = input.match(/^([\d.]+),([\d.]+),([\d.]+)$/);
+            const match = input.match(/^(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)$/);
 
             if(match){
                 const a = parseFloat(match[1]);
@@ -357,8 +323,11 @@ document.querySelectorAll('.button').forEach(button => {
                 .replace(/(\))(\d)/g, ')*$2') // Example: (5)5 -> (5)*5
                 .replace(/(\d)(π|e)/g, '$1*$2') // Example: 5π -> 5*Math.PI
                 .replace(/(π|e)(\d)/g, '$1*$2') // Example: π5 -> Math.PI*5
-                .replace(/(π|e)(\()/g, '$1*(') // Handle π( -> Math.PI*(
-                .replace(/(\))(\d)/g, ')*$2'); // Handle closing parenthesis followed by number, e.g., (5)9 -> (5)*9
+                .replace(/(π|e)(\()/g, '$1*(') // Example: π( -> Math.PI*(
+                .replace(/(\))(\d)/g, ')*$2')  // Example: (5)9 -> (5)*9
+                .replace(/(\d)-(\d)/g, '$1-($2)') // Treat 5-5 as 5-(5) for clarity
+                .replace(/--/g, '+') // Simplify double negatives: -- -> +
+                .replace(/(\+|\-|\*|\/)\-/g, '$1(-'); // Handle cases like 5*-3 -> 5*(-3)
 
             expression = expression.replace(/\b0+(\d+)/g, '$1');
 

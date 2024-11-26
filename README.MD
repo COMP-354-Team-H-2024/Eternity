@@ -32,9 +32,10 @@ How to run the calculator:
 You can install Flask using pip if you do not have it:
 
    pip install Flask
+2. How to run the code
+   python app.py
 
-
-2. Project Structure: 
+Project Structure: 
 
 3. Issues / bugs:
    - When computing each function that use a list of number 

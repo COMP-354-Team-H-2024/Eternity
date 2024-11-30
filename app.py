@@ -7,6 +7,7 @@ from stats.stddev.__init__ import population_standard_deviation
 from geo.arccos.arccos import arccos
 from geo.arccos.arccos import rad_to_deg
 from math import pi
+import webbrowser
 
 app = Flask(__name__)
 
@@ -118,4 +119,5 @@ def arccos_api():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    webbrowser.open_new("http://127.0.0.1:5000")
+    app.run() # debug=True)

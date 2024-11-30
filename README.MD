@@ -1,3 +1,21 @@
+
+# Installation
+
+1. Download the repository as a zip file.
+
+# Usage Guide
+
+How to run the calculator:
+1. Make sure you have Python and Flask installed on your system. 
+You can install Flask using pip if you do not have it:
+
+   pip install Flask
+2. How to run the code
+   python app.py
+
+## Functions
+
+
 How to use each function:
 1. Exponentiation (x^y):
    - Enter the base using digit buttons (0-9)
@@ -27,13 +45,7 @@ How to use each function:
    - Enter as many numbers as you want, separated by commas.
    - Press the std button to calculate and display the result.
 
-How to run the calculator:
-1. Make sure you have Python and Flask installed on your system. 
-You can install Flask using pip if you do not have it:
 
-   pip install Flask
-2. How to run the code
-   python app.py
 
 Project Structure: 
 

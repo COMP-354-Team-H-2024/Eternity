@@ -33,7 +33,9 @@ document.addEventListener('keydown', function(event) {
             display.value = 'Syntax Error'; // Show error if the expression is invalid
             console.error('Evaluation error:', error);
         }
-    }
+    } else {
+		display.focus();
+	}
 });
 // Display button value on click
 document.querySelectorAll('.button').forEach(button => {

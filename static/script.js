@@ -1,5 +1,5 @@
-let historyView = ['No More Values in History'];
-let historyIndex = 0;
+let historyView = [];
+
 //simulate the enter '=' with enter from used input
 document.addEventListener('keydown', function(event) {
     const display = document.getElementById('display');
@@ -29,11 +29,17 @@ document.addEventListener('keydown', function(event) {
             const result = eval(expression);
             historyView.push(result);  // Add result to history if you want
             display.value = result;    // Show result in display
+            updateHistory();
         } catch (error) {
             display.value = 'Syntax Error'; // Show error if the expression is invalid
             console.error('Evaluation error:', error);
         }
-    } else {
+    } 
+    else if(event.key === "Escape") {
+        display.value = '';  
+    }
+    
+    else {
 		display.focus();
 	}
 });
@@ -48,13 +54,22 @@ document.querySelectorAll('.button').forEach(button => {
         if (buttonText === 'C') {
             display.value = ''; // Clear the display
         }
-        else if (buttonText === 'hist') {
-            display.value = historyView;   
+        else if (buttonText === 'HIST') {
+            const historySidebar = document.getElementById('history-sidebar');
+            if (historySidebar.style.display === 'none') {
+                historySidebar.style.display = 'block'; // Show the sidebar
+            } else {
+                historySidebar.style.display = 'none'; // Hide the sidebar
+            }
         }
         else if (buttonText === '↑') {
             display.value = historyView[historyView.length - 1 - historyIndex];
             historyIndex = historyIndex + 1;
              
+        }
+        else if (buttonText === 'export hist'){ 
+            const csvData = convertHistoryToCSV(historyView); // Convert history to CSV
+            downloadCSV(csvData); // Trigger download
         }
         else if (buttonText === '↓') {
             display.value = historyView[historyView.length - 1 - historyIndex];
@@ -175,6 +190,7 @@ document.querySelectorAll('.button').forEach(button => {
                     if (data.success) {
                         display.value = data.result; // Show the result
                         historyView.push(data.result);
+                        updateHistory();
                     } else {
                         display.value = 'Error'; // Handle errors
                     }
@@ -208,6 +224,8 @@ document.querySelectorAll('.button').forEach(button => {
                         if (data.success) {
                             display.value = data.result; // Show the result
                             historyView.push(data.result);
+                            updateHistory();
+                            
                         } else {
                             display.value = 'Error'; // Handle errors
                         }
@@ -242,6 +260,7 @@ document.querySelectorAll('.button').forEach(button => {
                         if (data.success) {
                             display.value = data.result; // Show the result
                             historyView.push(data.result);
+                            updateHistory();
                         } else {
                             display.value = 'Error'; // Handle errors
                         } 
@@ -272,6 +291,7 @@ document.querySelectorAll('.button').forEach(button => {
                          if (data.success) {
                              display.value = data.result; // Show the result
                              historyView.push(data.result);
+                             updateHistory();
                          } else {
                              display.value = 'Error: ' + data.error; // Show error message
                          }
@@ -338,6 +358,7 @@ document.querySelectorAll('.button').forEach(button => {
                 const result = eval(expression);
                 historyView.push(result);
                 display.value = result;
+                updateHistory();
                 
             }
             catch(error){
@@ -352,4 +373,44 @@ document.querySelectorAll('.button').forEach(button => {
     });
 });
 
+// Update history section in the sidebar
+function updateHistory() {
+    const history = document.getElementById('history'); // Get the history div
+    
+    if (historyView.length > 0) {
+        history.innerHTML = ''; // Clear the history section
+
+        // Add each history item to the history section
+        historyView.forEach(item => {
+            const p = document.createElement('p');
+            p.textContent = item; // Set text of the new <p> element
+            p.classList.add('history-item'); // Add a class for styling
+
+            // Add click event listener to each history item
+            p.addEventListener('click', function() {
+                const display = document.getElementById('display');
+                display.value = item; // Set the entire history item (expression + result) in the display
+            });
+            
+
+            history.appendChild(p); // Append <p> to history
+        });
+    }
+}
+
+// Function to convert history array to CSV format
+function convertHistoryToCSV(historyArray) {
+    const header = 'History\n'; // Haeder
+    const rows = historyArray.map(item => `"${item}"`).join('\n'); // map each item to a row in the csv
+    return header + rows;
+}
+
+// Function to download the CSV file 
+function downloadCSV(csvData, filename = 'history.csv') {
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const link = document.createElement('a'); 
+    link.href = URL.createObjectURL(blob);
+    link.download = filename; 
+    link.click(); 
+}
 

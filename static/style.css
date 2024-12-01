@@ -7,6 +7,74 @@ body {
      margin: 0;
      background-color:#e3ffda;
 }
+
+/* Container for both sidebar and calculator */
+.container {
+     display: flex;
+     width: 100%;
+     flex-direction: row-reverse; /* Changed from row to row-reverse to position the right-side container on the left */
+     justify-content: center; /* Center the flex items horizontally */
+     align-items: center; /* Center the flex items vertically */
+ }
+ 
+ /* Sidebar Styles */
+ .sidebar {
+     display: block;
+     width: 250px;
+     background-color: #f4f4f4;
+     padding: 20px;
+     border-radius: 10px;
+     box-shadow: 0 5px 10px #10648f;
+     margin-right: 20px;
+ }
+ 
+ .tab h3 {
+     font-size: 1.2em;
+     color: #225d7b;
+     font-weight: bold;
+ }
+ 
+/* Styling for the history section container */
+.history-section {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    overflow-y: auto;
+}
+
+/* Styling for individual history items (boxes) */
+.history-item {
+    background-color: #f8f9fa; /* Light background for the box */
+    border: 2px solid #ddd; /* Border to define the box */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px; /* Rounded corners for the box */
+    cursor: pointer; /* Indicate it's clickable */
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between; /* Space out the expression and result */
+    align-items: center;
+}
+
+/* Hover effect for history items */
+.history-item:hover {
+    background-color: #e2e6ea; /* Change background color on hover */
+}
+
+/* Styling for the expression part (left side of the box) */
+.history-item .expression {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Styling for the result part (right side of the box) */
+.history-item .result {
+    color: #16a085;
+    font-weight: normal;
+}
 .calculator {
     background: #ddedff;
     padding: 20px;
